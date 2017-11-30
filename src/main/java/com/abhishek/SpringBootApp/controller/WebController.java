@@ -1,6 +1,8 @@
 package com.abhishek.SpringBootApp.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,31 +31,33 @@ public class WebController {
 	
 	
 	@RequestMapping("/findall")
-	public String findAll(){
-		String result = "";
+	public List<Customer> findAll(){
 		
+		List<Customer> customerList = new ArrayList<Customer>(); 
 		for(Customer cust : repository.findAll()){
-			result += cust.toString() + "<br>";
+			Customer customer = new Customer(cust.getFirstName(), cust.getLastName());
+			customerList.add(customer);
 		}
 		
-		return result;
+		return customerList;
 	}
 	
 	@RequestMapping("/findbyid")
-	public String findById(@RequestParam("id") long id){
-		String result = "";
-		result = repository.findOne(id).toString();
-		return result;
+	public Customer findById(@RequestParam("id") long id){
+		
+		Customer customer = repository.findOne(id);
+		return customer;
 	}
 	
 	@RequestMapping("/findbylastname")
-	public String fetchDataByLastName(@RequestParam("lastname") String lastName){
-		String result = "";
+	public List<Customer> fetchDataByLastName(@RequestParam("lastname") String lastName){
+		List<Customer> customerList = new ArrayList<Customer>();
 		
 		for(Customer cust: repository.findByLastName(lastName)){
-			result += cust.toString() + "<br>"; 
+			Customer customer = new Customer(cust.getFirstName(), cust.getLastName());
+			customerList.add(customer);
 		}
 		
-		return result;
+		return customerList;
 	}
 }

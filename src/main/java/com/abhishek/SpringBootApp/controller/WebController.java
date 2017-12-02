@@ -35,7 +35,7 @@ public class WebController {
 		
 		List<Customer> customerList = new ArrayList<Customer>(); 
 		for(Customer cust : repository.findAll()){
-			Customer customer = new Customer(cust.getFirstName(), cust.getLastName());
+			Customer customer = new Customer(cust.getId(), cust.getFirstName(), cust.getLastName());
 			customerList.add(customer);
 		}
 		
@@ -51,10 +51,11 @@ public class WebController {
 	
 	@RequestMapping("/findbylastname")
 	public List<Customer> fetchDataByLastName(@RequestParam("lastname") String lastName){
+		
 		List<Customer> customerList = new ArrayList<Customer>();
 		
 		for(Customer cust: repository.findByLastName(lastName)){
-			Customer customer = new Customer(cust.getFirstName(), cust.getLastName());
+			Customer customer = new Customer(cust.getId(), cust.getFirstName(), cust.getLastName());
 			customerList.add(customer);
 		}
 		

@@ -7,4 +7,4 @@ Non-web application with production-ready features.
 3. PostgreSQL 10 or greater.
 
 ## Test the APIs
-This is [Swagger API](http://localhost:8080/swagger-ui.html) link to test all the apis defined in controller.
+This is [Swagger API](http://localhost:8080/swagger-ui.html) link to test all the apis defined in web controller.

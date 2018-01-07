@@ -1,5 +1,5 @@
 # spring-boot-sample-java-scala
-Non-web application with production-ready features.
+Non-web application with development-ready features.
 
 ## Requirements
 1. Java 9 or greater.

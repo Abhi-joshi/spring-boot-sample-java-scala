@@ -1,8 +1,7 @@
 CREATE TABLE customer (
-    id INTEGER NOT NULL,
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
-	PRIMARY KEY (id)
+  id              SERIAL NOT NULL PRIMARY KEY,
+  firstname       VARCHAR(100) NOT NULL,
+  lastname        VARCHAR(100) NOT NULL
 );
 
 INSERT INTO customer (firstname, lastname) VALUES('John','Smith');

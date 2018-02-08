@@ -6,5 +6,7 @@ Non-web application with development-ready features.
 2. Maven 3.5.2 or greater.
 3. PostgreSQL 10 or greater.
 
+Run the given sql script(resources) in postgres.
+
 ## Test the APIs
 This is [Swagger API](http://localhost:8080/swagger-ui.html) link to test all the apis defined in web controller.

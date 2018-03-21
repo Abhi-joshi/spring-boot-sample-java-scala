@@ -2,6 +2,7 @@ package com.abhishek.SpringBootApp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,8 +38,8 @@ public class WebController {
 
 	@RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Customer showProduct(@PathVariable Long id) {
-		Customer customer = repository.findOne(id);
-		return customer;
+		Optional<Customer> customer = repository.findById(id);
+		return customer.orElse(null);
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
@@ -49,16 +50,17 @@ public class WebController {
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody Customer customer) {
-		Customer cust = repository.findOne(id);
-		cust.setFirstName(customer.getFirstName());
-		cust.setLastName(customer.getLastName());
-		repository.save(cust);
+		Optional<Customer> cust = repository.findById(id);
+		Customer updatedCutomer = cust.orElse(null);
+		updatedCutomer.setFirstName(customer.getFirstName());
+		updatedCutomer.setLastName(customer.getLastName());
+		repository.save(updatedCutomer);
 		return new ResponseEntity<String>("Customer deatils updated successfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity<String> delete(@PathVariable Long id) {
-		repository.delete(id);
+		repository.deleteById(id);
 		return new ResponseEntity<String>("Customer details deleted successfully", HttpStatus.OK);
 
 	}

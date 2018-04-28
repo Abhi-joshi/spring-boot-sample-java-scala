@@ -27,9 +27,9 @@ public class WebController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
 	public List<Customer> list() {
 
-		List<Customer> customerList = new ArrayList<Customer>();
-		for (Customer cust : repository.findAll()) {
-			Customer customer = new Customer(cust.getId(), cust.getFirstName(), cust.getLastName());
+		var customerList = new ArrayList<Customer>();
+		for (var cust : repository.findAll()) {
+			var customer = new Customer(cust.getId(), cust.getFirstName(), cust.getLastName());
 			customerList.add(customer);
 		}
 
@@ -38,7 +38,7 @@ public class WebController {
 
 	@RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Customer showProduct(@PathVariable Long id) {
-		Optional<Customer> customer = repository.findById(id);
+		var customer = repository.findById(id);
 		return customer.orElse(null);
 	}
 
@@ -50,12 +50,12 @@ public class WebController {
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestBody Customer customer) {
-		Optional<Customer> cust = repository.findById(id);
-		Customer updatedCutomer = cust.orElse(null);
+		var cust = repository.findById(id);
+		var updatedCutomer = cust.orElse(null);
 		updatedCutomer.setFirstName(customer.getFirstName());
 		updatedCutomer.setLastName(customer.getLastName());
 		repository.save(updatedCutomer);
-		return new ResponseEntity<String>("Customer deatils updated successfully", HttpStatus.OK);
+		return new ResponseEntity<String>("Customer details updated successfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")

@@ -21,7 +21,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>10</java.version>
-		<scala.version>2.12.4</scala.version>
+		<scala.version>2.12.6</scala.version>
 		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
 	</properties>
 	<dependencies>
